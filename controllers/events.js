@@ -19,19 +19,22 @@ const crearEvento = async (req, res = response) => {
 
   try {
     evento.user = req.uid
-    const eventoDB = await evento.save()
-    return res.status(200).json({
+
+    const eventoGuardado = await evento.save()
+
+    res.json({
       ok: true,
-      evento: eventoDB,
+      evento: eventoGuardado,
     })
   } catch (error) {
     console.log(error)
-    return res.status(500).json({
+    res.status(500).json({
       ok: false,
       msg: 'Hable con el administrador',
     })
   }
 }
+
 const actualizarEvento = async (req, res = response) => {
   const eventoId = req.params.id
   const uid = req.uid

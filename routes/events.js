@@ -13,6 +13,7 @@ import {
   eliminarEvento,
   getEeventos,
 } from '../controllers/events.js'
+import { isDate } from '../helpers/isDate.js'
 
 const router = Router()
 
@@ -23,9 +24,9 @@ router.post(
   '/',
   [
     check('title', 'El titulo es obligatorio').not().isEmpty(),
-    check('start', 'Fecha de inicio es obligatoria').isDate(),
-    check('end', 'Fecha de finalizacion es obligatoria').isDate(),
-    fieldValidator,
+    check('start', 'Fecha de inicio es obligatoria').custom(isDate),
+    check('end', 'Fecha de finalización es obligatoria').custom(isDate),
+    // fieldValidator,
   ],
   crearEvento
 )
@@ -34,8 +35,8 @@ router.put(
   [
     check('title', 'El titulo es obligatorio').not().isEmpty(),
     check('start', 'Fecha de inicio es obligatoria').isDate(),
-    check('end', 'Fecha de finalizacion es obligatoria').isDate(),
-    fieldValidator,
+    check('end', 'Fecha de finalización es obligatoria').isDate(),
+    // fieldValidator,
   ],
   actualizarEvento
 )

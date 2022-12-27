@@ -37,7 +37,7 @@ const crearUsuario = async (req, res = response) => {
     console.log(error)
     res.status(500).json({
       ok: false,
-      masg: 'Please contact Admin',
+      msg: 'Please contact Admin',
     })
   }
 }
@@ -87,6 +87,8 @@ const revalidarToken = async (req, res = response) => {
 
   res.json({
     ok: true,
+    uid,
+    name,
     token,
   })
 }
